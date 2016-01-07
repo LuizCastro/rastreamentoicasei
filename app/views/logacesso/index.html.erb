@@ -1,0 +1,16 @@
+<h2>Acessos</h2>
+
+<table class="table table-striped">
+	<tr>
+		<th>Guid</th>
+		<th>Local</th>
+		<th>Data</th>
+	</tr>
+	<% @acessos.each do |acesso| %>
+		<tr>
+			<td><%= acesso.guid %></td>
+			<td><%= acesso.local %></td>
+			<td><%= acesso.datahora.strftime("%d/%m/%Y %H:%M") %></td>
+		</tr>
+	<% end %>
+</table>

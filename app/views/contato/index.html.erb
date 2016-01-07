@@ -1,0 +1,26 @@
+<h2>Contato</h2>
+<%= form_tag('/contato/enviar', method: :post, onsubmit: "Contato.Enviar(this);return false;") do  -%> 
+	<fieldset>
+	<div class="form-group">
+		<label>Nome</label>
+		<input type="text" id="nome" required name="nome" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label>E-mail</label>
+		<input type="email" id="email" required name="email" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label>Escreva um pouco</label>
+		<textarea id="descricao" name="descricao" required class="form-control"></textarea>
+	</div>
+	<div class="alert alert-success" role="alert" id="msg-sucesso" style="display:none"> 
+		<strong>Obrigado</strong> Recebemos seu contato. 
+	</div>
+	<div class="alert alert-danger" role="alert" id="msg-erro" style="display:none"> 
+		<strong>Ops</strong> <span></span>. 
+	</div>
+	<p class="text-center">
+		<input type="submit" class="btn btn-primary" value="Enviar" />
+	</p>
+	</fieldset>
+<% end -%>

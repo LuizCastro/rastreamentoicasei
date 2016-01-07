@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rastreamento - iCasei</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <% if @rastrear %>
+  <%= javascript_include_tag 'rastreamento' %>
+  <% end %>
+</head>
+<body>
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="<%= (@activePage == "home" ? 'active' : '') %>"><%= link_to "Home", controller: "home" %></li>
+            <li role="presentation" class="<%= (@activePage == "sobre" ? 'active' : '') %>"><%= link_to "Sobre", controller: "sobre" %></li>
+            <li role="presentation" class="<%= (@activePage == "contato" ? 'active' : '') %>"><%= link_to "Contato", controller: "contato" %></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Rastreamento - iCasei</h3>
+      </div>
+	  <%= yield %>
+      
+
+      <footer class="footer">
+        <p>&copy; 2016 Evandro Passos.</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+</html>
