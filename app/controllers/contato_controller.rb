@@ -23,7 +23,6 @@ class ContatoController < ApplicationController
 		render :json=> { :isError => isError, :errorMessage => errorMessage }
 	end
 	
-	private
 	def validar_campos(nome, email, descricao)
 		if nome == nil || nome == ""
 			raise ArgumentError, "Nome não foi informado."
@@ -37,7 +36,7 @@ class ContatoController < ApplicationController
 			raise ArgumentError, "Descrição não foi informada."
 		end
 		
-		if Contato.where(email: email).count > 0
+		if Contato.email_existe?(email)
 			raise ArgumentError, "E-mail já enviou contato."
 		end
 	end

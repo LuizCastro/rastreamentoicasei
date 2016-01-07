@@ -1,9 +1,13 @@
 class LogacessoController < ApplicationController
 	def index
 		@rastrear = false
-		@acessos = Logacesso.desc(:datahora).limit(50)
+		@activePage = "acessos"
+		@acessos = Logacesso.listar_ultimos_acessos(50)
 	end
 	def salvar
+		isError =  false
+		errorMessage = ""
+		begin
 		guid = params[:guid]
 		local = params[:local]
 		datahora = Time.now
@@ -12,7 +16,12 @@ class LogacessoController < ApplicationController
 		
 		Logacesso.create({guid: guid, local: local, datahora: datahora})
 		
-		render :nothing => true
+		rescue ArgumentError => detalhe
+			isError = true
+			errorMessage = detalhe.message
+		end
+		
+		render :json=> { :isError => isError, :errorMessage => errorMessage }
 	end
 	
 	def validar_parametros(guid, local)
