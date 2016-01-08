@@ -9,8 +9,8 @@ Things you may want to cover:
 * System dependencies
 	MongoDB service must be installed, more info https://www.mongodb.org/
 * Configuration
-	<tt> $ bundle install</tt>
-	Edit file /config/mongoid.yml section hosts with address service mongodb
+	<tt> $ bundle install</tt><br />
+	Edit file /config/mongoid.yml section hosts with address service mongodb<br />
 	<tt> $ rails server --binding localhost</tt>
 
 * How to run the test suite
