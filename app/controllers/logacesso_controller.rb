@@ -14,14 +14,19 @@ class LogacessoController < ApplicationController
 		
 		validar_parametros(guid, local)
 		
-		Logacesso.create({guid: guid, local: local, datahora: datahora})
-		
 		rescue ArgumentError => detalhe
 			isError = true
 			errorMessage = detalhe.message
 		end
 		
-		render :json=> { :isError => isError, :errorMessage => errorMessage }
+		begin 
+			Logacesso.create({guid: guid, local: local, datahora: datahora})
+		rescue ArgumentError 
+			isError = true
+			errorMessage = "Ocorreu um erro interno, tente novamente."
+		end
+		
+		render :json=> { :errorMessage => errorMessage }, :status => (isError ? 400 : 200)
 	end
 	
 	def validar_parametros(guid, local)

@@ -50,43 +50,42 @@ class ContatoControllerTest < ActionController::TestCase
 	def test_enviar_nome_em_branco
 		post :enviar, {:nome => "", :email => "", :descricao => ""}
 		body = JSON.parse(response.body)
-		
-		assert_equal true, body["isError"]
+		assert_response 400
 		assert_equal "Nome não foi informado.", body["errorMessage"]
 	end
 	
 	def test_enviar_email_em_branco
 		post :enviar, {:nome => "evandro", :email => "", :descricao => ""}
 		body = JSON.parse(response.body)
-		
-		assert_equal true, body["isError"]
+		assert_response 400
 		assert_equal "E-mail não foi informado.", body["errorMessage"]
 	end
 	
 	def test_enviar_descricao_em_branco
 		post :enviar, {:nome => "evandro", :email => "evpassos@gmail.com", :descricao => ""}
 		body = JSON.parse(response.body)
-		
-		assert_equal true, body["isError"]
+		assert_response 400
 		assert_equal "Descrição não foi informada.", body["errorMessage"]
 	end
 	
 	def test_enviar_email_existente
 		post :enviar, {:nome => "Evandro", :email => "evpassos@gmail.com", :descricao => "testes"}, :format => "json"
-		assert_response :success
-		
+		assert_response 400
 		body = JSON.parse(response.body)
-		
-		assert_equal true, body["isError"]
 		assert_equal "E-mail já enviou contato.", body["errorMessage"]
 	end
 	
 	def test_enviar_successo
 		post :enviar, {:nome => "Ainne", :email => "ainne.arlete@gmail.com", :descricao => "testes"}, :format => "json"
 		assert_response :success
-				
-		body = JSON.parse(response.body)
+	end
+	
+	def test_index_render
+		@request.headers['Accept'] = Mime::HTML
+		@request.headers['Content-Type'] = Mime::HTML.to_s
 		
-		assert_equal false, body["isError"]
+		get :index
+		assert_equal assigns(:activePage), "contato"
+		assert_response 200
 	end
 end

@@ -9,17 +9,17 @@ var Contato = {
                 $(botaoEnviar).attr("disabled", "disabled");
             },
             success: function (result) {
-			
-                if (result.isError) {
-                    $(botaoEnviar).removeAttr("disabled");
-					$("#msg-erro").show();
-					$("#msg-erro > span").html(result.errorMessage);
-                } else {
-                    $(botaoEnviar).hide();
+				
+				$(botaoEnviar).hide();
 					$("#msg-erro").hide();
 					$("#msg-sucesso").show();
-                }
-            }
+            },
+			error: function(result){
+				$("#msg-sucesso").hide();
+				$(botaoEnviar).removeAttr("disabled");
+				$("#msg-erro").show();
+				$("#msg-erro > span").html(result.responseJSON.errorMessage);
+			}
         });
 	}
 };

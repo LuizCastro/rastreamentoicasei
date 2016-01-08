@@ -13,14 +13,20 @@ class ContatoController < ApplicationController
 		
 		validar_campos(nome, email, descricao)
 		
-		Contato.create ({nome: nome, email: email, descricao: descricao})
-		
 		rescue ArgumentError => detalhe
 			isError = true
 			errorMessage = detalhe.message
 		end
 		
-		render :json=> { :isError => isError, :errorMessage => errorMessage }
+		begin 
+			Contato.create ({nome: nome, email: email, descricao: descricao})
+		rescue ArgumentError
+			isError = true
+			errorMessage = "Ocorreu um erro interno, tente novamente."
+		end
+
+		render :json=> { :errorMessage => errorMessage }, :status => (isError ? 400 : 200)
+
 	end
 	
 	def validar_campos(nome, email, descricao)

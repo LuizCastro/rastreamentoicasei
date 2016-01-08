@@ -7,7 +7,14 @@ Things you may want to cover:
 * Ruby version
 	ruby 2.1.5p273
 * System dependencies
-	MongoDB service must be installed, more info https://www.mongodb.org/
+MongoDB service must be installed, more info https://www.mongodb.org/
+Mongoid chose to perform to connect to dababase, more info https://docs.mongodb.org/ecosystem/tutorial/ruby-mongoid-tutorial/
+
+
+I use bundler to manage the gems, more info http://bundler.io/
+Open a terminal window and run this command:
+<tt> $ gem install bundler</tt>
+
 * Configuration
 	<tt> $ bundle install</tt>
 
