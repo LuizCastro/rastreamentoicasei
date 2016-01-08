@@ -1,27 +1,20 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+App developed for iCasei portal test.
 
 Things you may want to cover:
 
 * Ruby version
-
+	ruby 2.1.5p273
 * System dependencies
-
+	MongoDB service must be installed, more info https://www.mongodb.org/
 * Configuration
-
-* Database creation
-
-* Database initialization
-
+	Run $ bundle install
+	Edit file /config/mongoid.yml section hosts with address service mongodb
+	Run $ rails server --binding localhost
+	
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+	Run $ rake -test
 
 
 Please feel free to use a different markup language if you do not plan to run

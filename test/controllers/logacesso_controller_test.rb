@@ -4,26 +4,27 @@ class LogacessoControllerTest < ActionController::TestCase
 	setup do
 		@request.headers['Accept'] = Mime::JSON
 		@request.headers['Content-Type'] = Mime::JSON.to_s
+		@controller = LogacessoController.new
 	end
 	
 	def test_validar_parametros_guid_invalido
-		controller = LogacessoController.new
+
 		assert_raise ArgumentError do
-			controller.validar_parametros("", "")
+			@controller.validar_parametros("", "")
 		end
 	end
 	
 	def test_validar_parametros_local_invalido
-		controller = LogacessoController.new
+		
 		assert_raise ArgumentError do
-			controller.validar_parametros("017d68a9-4be1-4e25-928a-6b5d05ccb962", "")
+			@controller.validar_parametros("017d68a9-4be1-4e25-928a-6b5d05ccb962", "")
 		end
 	end
 	
 	def test_validar_parametros_sucesso
-		controller = LogacessoController.new
+		
 		assert_nothing_raised do
-			controller.validar_parametros("017d68a9-4be1-4e25-928a-6b5d05ccb962", "http://localhost")
+			@controller.validar_parametros("017d68a9-4be1-4e25-928a-6b5d05ccb962", "http://localhost")
 		end
 	end
 	
